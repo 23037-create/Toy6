@@ -1,122 +1,244 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
+
+    <!-- スマホ・iPad対応 -->
     <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>Toy Shooting Game</title>
+    <title>TOY SHOOTING GAME</title>
 
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div id="game">
+    <!-- =========================
+         ゲーム全体
+    ========================== -->
+    <div id="game">
 
-    <!-- 上の情報バー -->
-    <header>
+        <!-- =========================
+             上部ゲームフレーム
+        ========================== -->
+        <header>
 
-        <div class="scoreBox">
-            ⭐ SCORE
-            <span id="score">0</span>
+            <div class="scoreBox">
+                SCORE
+                <span id="score">0</span>
+            </div>
+
+            <div class="timeBox">
+                TIME
+                <span id="time">30</span>
+            </div>
+
+        </header>
+
+
+        <!-- =========================
+             左側の木製看板
+        ========================== -->
+        <div class="sign">
+
+            <div class="signTitle">
+                TOY<br>
+                SHOOTING
+            </div>
+
+            <div class="soldier">
+                🪖
+            </div>
+
+            <div class="instruction">
+                TARGETを<br>
+                ねらえ！
+            </div>
+
+            <div class="stars">
+                ★ ★ ★
+            </div>
+
         </div>
 
-        <div class="timeBox">
-            ⏱ TIME
-            <span id="time">30</span>
-        </div>
 
-        <button id="pauseButton">Ⅱ</button>
+        <!-- =========================
+             ゲームステージ
+        ========================== -->
+        <main id="stage">
 
-    </header>
-
-
-    <!-- ステージ -->
-    <main id="stage">
-
-        <!-- 山 -->
-        <div class="mountain mountain1"></div>
-        <div class="mountain mountain2"></div>
-
-        <!-- 雲 -->
-        <div class="cloud cloud1"></div>
-        <div class="cloud cloud2"></div>
-
-        <!-- 背景の木 -->
-        <div class="trees">
-            🌲　🌲　🌲　🌲　🌲　🌲　🌲
-        </div>
-
-        <!-- 川 -->
-        <div class="river"></div>
-
-        <!-- 線路 -->
-        <div class="rail"></div>
+            <!-- 空 -->
+            <div class="sky"></div>
 
 
-        <!-- 的を配置する場所 -->
-        <div id="targets"></div>
+            <!-- 遠くの山 -->
+            <div class="backMountain"></div>
+            <div class="mountainA"></div>
+            <div class="mountainB"></div>
+            <div class="mountainC"></div>
 
 
-        <!-- 照準 -->
-        <div id="crosshair">
-            <div class="cross-circle"></div>
-            <div class="cross-h"></div>
-            <div class="cross-v"></div>
-            <div class="cross-dot"></div>
-        </div>
-
-    </main>
+            <!-- 雲 -->
+            <div class="cloud cloud1"></div>
+            <div class="cloud cloud2"></div>
+            <div class="cloud cloud3"></div>
 
 
-    <!-- 左側の看板 -->
-    <aside class="sign">
-
-        <div class="signTitle">
-            TOY
-            <br>
-            SHOOTING
-            <br>
-            GAME
-        </div>
-
-        <div class="soldier">
-            🧸🔫
-        </div>
-
-        <div class="instruction">
-            TARGETを<br>
-            ねらって<br>
-            撃て！
-        </div>
-
-        <div class="stars">
-            ★ ★ ★
-        </div>
-
-    </aside>
+            <!-- おもちゃの飛行機 -->
+            <div class="toyPlane">
+                ✈
+            </div>
 
 
-    <!-- スタート画面 -->
-    <div id="startScreen">
+            <!-- 森 -->
+            <div class="forest"></div>
 
-        <h1>🎪 TOY SHOOTING 🎪</h1>
 
-        <p>
-            的をねらって撃とう！
-        </p>
+            <!-- 丘 -->
+            <div class="hill hill1"></div>
+            <div class="hill hill2"></div>
 
-        <button id="startButton">
-            START
+
+            <!-- 川 -->
+            <div class="river">
+
+                <div class="wave wave1"></div>
+                <div class="wave wave2"></div>
+                <div class="wave wave3"></div>
+
+            </div>
+
+
+            <!-- =========================
+                 木のおもちゃの家
+            ========================== -->
+
+            <div class="woodHouse houseLeft">
+
+                <div class="roof"></div>
+                <div class="window"></div>
+                <div class="door"></div>
+
+            </div>
+
+
+            <div class="woodHouse houseRight">
+
+                <div class="roof"></div>
+                <div class="window"></div>
+                <div class="door"></div>
+
+            </div>
+
+
+            <!-- =========================
+                 おもちゃの兵隊
+            ========================== -->
+
+            <div class="toySoldier soldier1">
+                🪖
+            </div>
+
+            <div class="toySoldier soldier2">
+                🪖
+            </div>
+
+
+            <!-- =========================
+                 線路
+            ========================== -->
+
+            <div class="rail railLeft"></div>
+            <div class="rail railRight"></div>
+
+
+            <!-- =========================
+                 おもちゃ箱
+            ========================== -->
+
+            <div class="toyBox box1">
+                TOYS
+            </div>
+
+            <div class="toyBox box2">
+                TOYS
+            </div>
+
+            <div class="toyBox box3">
+                TOYS
+            </div>
+
+
+            <!-- =========================
+                 ターゲット
+            ========================== -->
+
+            <div id="targets"></div>
+
+
+            <!-- =========================
+                 照準
+            ========================== -->
+
+            <div id="crosshair">
+
+                <div class="cross-circle"></div>
+
+                <div class="cross-h"></div>
+
+                <div class="cross-v"></div>
+
+                <div class="cross-dot"></div>
+
+            </div>
+
+        </main>
+
+
+        <!-- =========================
+             ポーズボタン
+        ========================== -->
+
+        <button id="pauseButton">
+            PAUSE
         </button>
+
+
+        <!-- =========================
+             スタート画面
+        ========================== -->
+
+        <div id="startScreen">
+
+            <h1>
+                TOY<br>
+                SHOOTING
+            </h1>
+
+            <p>
+                おもちゃの世界で<br>
+                ターゲットを撃ちぬけ！
+            </p>
+
+            <h2>
+                30 SECONDS
+            </h2>
+
+            <button id="startButton">
+                START
+            </button>
+
+        </div>
 
     </div>
 
 
-</div>
-
-<script src="game.js"></script>
+    <!-- JavaScript -->
+    <script src="game.js"></script>
 
 </body>
+
 </html>
