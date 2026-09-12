@@ -1,0 +1,787 @@
+* {
+    box-sizing: border-box;
+    user-select: none;
+}
+
+html, body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    background: #173719;
+}
+
+#game {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #183f1d 0px,
+            #183f1d 105px,
+            #c87931 105px,
+            #c87931 115px,
+            #163e20 115px,
+            #163e20 100%
+        );
+}
+
+
+/* =========================
+   上部アーケード部分
+========================= */
+
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 105px;
+
+    z-index: 50;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+
+    background:
+        repeating-linear-gradient(
+            45deg,
+            #70401f 0px,
+            #70401f 25px,
+            #432414 25px,
+            #432414 50px
+        );
+
+    border-bottom: 10px solid #c87931;
+
+    box-shadow:
+        0 5px 0 #3b2111;
+}
+
+
+/* 電球 */
+
+header::before {
+    content: "●  ●  ●  ●  ●  ●  ●  ●  ●  ●  ●  ●";
+
+    position: absolute;
+    top: 3px;
+    left: 0;
+    width: 100%;
+
+    text-align: center;
+
+    color: #ffd43b;
+
+    font-size: 14px;
+
+    letter-spacing: 20px;
+
+    text-shadow:
+        0 0 8px #fff;
+}
+
+
+/* スコア */
+
+.scoreBox,
+.timeBox {
+
+    margin-top: 12px;
+
+    min-width: 270px;
+
+    padding: 10px 30px;
+
+    border-radius: 35px;
+
+    background:
+        linear-gradient(
+            #255b99,
+            #102d61
+        );
+
+    color: white;
+
+    border: 5px solid #eee;
+
+    box-shadow:
+        0 5px 0 #08172f,
+        inset 0 0 15px rgba(255,255,255,.25);
+
+    font-size: 25px;
+    font-weight: bold;
+
+    text-align: center;
+}
+
+.scoreBox span,
+.timeBox span {
+    color: #ffe04b;
+    font-size: 36px;
+    margin-left: 15px;
+}
+
+
+/* =========================
+   一時停止
+========================= */
+
+#pauseButton {
+
+    position: absolute;
+
+    right: 25px;
+    top: 22px;
+
+    width: 60px;
+    height: 60px;
+
+    border-radius: 50%;
+
+    border: 5px solid white;
+
+    background: #173f78;
+
+    color: white;
+
+    font-size: 28px;
+}
+
+
+/* =========================
+   左側看板
+========================= */
+
+.sign {
+
+    position: absolute;
+
+    left: 0;
+    top: 105px;
+    bottom: 0;
+
+    width: 265px;
+
+    z-index: 40;
+
+    padding: 18px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #164c27,
+            #2b7638,
+            #164c27
+        );
+
+    border-right: 10px solid #7d431f;
+
+    box-shadow:
+        inset -5px 0 0 #d18a37;
+}
+
+
+/* 看板 */
+
+.signTitle {
+
+    position: relative;
+
+    padding: 20px 10px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #285bb5,
+            #172f7d
+        );
+
+    color: white;
+
+    font-size: 34px;
+    font-weight: 900;
+
+    line-height: 1.05;
+
+    text-align: center;
+
+    border: 8px solid #d89335;
+
+    box-shadow:
+        inset 0 0 15px #071a4e,
+        0 5px 0 #48240f;
+
+    text-shadow:
+        3px 3px 0 #222;
+}
+
+
+/* 星 */
+
+.signTitle::before,
+.signTitle::after {
+
+    content: "★";
+
+    position: absolute;
+
+    color: #ffe33b;
+
+    font-size: 30px;
+}
+
+.signTitle::before {
+    left: 5px;
+    top: 5px;
+}
+
+.signTitle::after {
+    right: 5px;
+    bottom: 5px;
+}
+
+
+/* おもちゃ兵士 */
+
+.soldier {
+
+    margin: 12px auto;
+
+    width: 150px;
+    height: 150px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    font-size: 90px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #4cae52,
+            #17642b
+        );
+
+    border: 8px solid #d79036;
+
+    box-shadow:
+        0 5px 0 #49240f;
+}
+
+
+/* 説明 */
+
+.instruction {
+
+    padding: 15px 5px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            #76381d,
+            #4b2115
+        );
+
+    border: 5px solid #d18b35;
+
+    color: white;
+
+    font-size: 24px;
+
+    font-weight: bold;
+
+    text-shadow:
+        2px 2px #111;
+}
+
+.stars {
+
+    margin-top: 10px;
+
+    color: #ffd638;
+
+    text-align: center;
+
+    font-size: 30px;
+
+    text-shadow:
+        0 0 5px white;
+}
+
+
+/* =========================
+   ステージ
+========================= */
+
+#stage {
+
+    position: absolute;
+
+    top: 105px;
+    left: 265px;
+    right: 0;
+    bottom: 0;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            #52a9dc 0%,
+            #8bd0ec 42%,
+            #4c8b34 43%,
+            #306524 61%,
+            #ce8d49 62%,
+            #a65d2f 100%
+        );
+}
+
+
+/* =========================
+   山
+========================= */
+
+.mountain {
+
+    position: absolute;
+
+    bottom: 43%;
+
+    width: 0;
+    height: 0;
+
+    border-left: 210px solid transparent;
+    border-right: 210px solid transparent;
+    border-bottom: 300px solid #ad5939;
+
+    filter:
+        drop-shadow(0 10px 0 rgba(0,0,0,.15));
+}
+
+.mountain1 {
+    left: 35%;
+}
+
+.mountain2 {
+    left: 68%;
+    transform: scale(.75);
+}
+
+
+/* =========================
+   木
+========================= */
+
+.trees {
+
+    position: absolute;
+
+    top: 34%;
+
+    width: 100%;
+
+    text-align: center;
+
+    font-size: 60px;
+
+    letter-spacing: 10px;
+
+    z-index: 2;
+}
+
+
+/* =========================
+   川
+========================= */
+
+.river {
+
+    position: absolute;
+
+    top: 51%;
+
+    left: 0;
+    right: 0;
+
+    height: 100px;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            #2377b0 0px,
+            #2377b0 15px,
+            #8edaf0 15px,
+            #8edaf0 27px
+        );
+
+    transform: skewY(-2deg);
+
+    z-index: 3;
+}
+
+
+/* =========================
+   線路
+========================= */
+
+.rail {
+
+    position: absolute;
+
+    bottom: -10px;
+
+    left: 35%;
+
+    width: 35%;
+
+    height: 180px;
+
+    border-left: 12px solid #444;
+    border-right: 12px solid #444;
+
+    transform:
+        perspective(250px)
+        rotateX(20deg);
+
+    z-index: 4;
+}
+
+
+/* =========================
+   的
+========================= */
+
+.target {
+
+    position: absolute;
+
+    width: 105px;
+    height: 105px;
+
+    transform:
+        translate(-50%, -50%);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    cursor: crosshair;
+
+    background:
+        radial-gradient(
+            circle,
+            #fff 0%,
+            #fff 38%,
+            #e8e8e8 39%,
+            #e8e8e8 52%,
+            #fff 53%,
+            #ddd 67%,
+            #fff 68%
+        );
+
+    border: 5px solid #eee;
+
+    box-shadow:
+        0 8px 0 #244225,
+        0 10px 12px rgba(0,0,0,.35);
+
+    transition:
+        transform .1s,
+        opacity .1s;
+}
+
+
+/* 的の棒 */
+
+.target::after {
+
+    content: "";
+
+    position: absolute;
+
+    bottom: -45px;
+
+    width: 12px;
+    height: 50px;
+
+    background: #28712e;
+
+    z-index: -1;
+}
+
+
+/* 点数 */
+
+.points {
+
+    font-size: 24px;
+
+    font-weight: 900;
+
+    text-shadow:
+        1px 1px white;
+}
+
+.star {
+
+    display: block;
+
+    font-size: 30px;
+
+    text-align: center;
+}
+
+
+/* 色 */
+
+.target.red {
+    color: #d52229;
+}
+
+.target.green {
+    color: #18823b;
+}
+
+.target.blue {
+    color: #2259b5;
+}
+
+
+/* =========================
+   照準
+========================= */
+
+#crosshair {
+
+    position: absolute;
+
+    width: 90px;
+    height: 90px;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    z-index: 80;
+
+    pointer-events: none;
+
+    filter:
+        drop-shadow(0 0 4px white);
+}
+
+
+.cross-circle {
+
+    position: absolute;
+
+    width: 70px;
+    height: 70px;
+
+    left: 10px;
+    top: 10px;
+
+    border: 5px solid #e92328;
+
+    border-radius: 50%;
+}
+
+
+.cross-h {
+
+    position: absolute;
+
+    left: 0;
+    top: 43px;
+
+    width: 90px;
+    height: 4px;
+
+    background: #e92328;
+}
+
+
+.cross-v {
+
+    position: absolute;
+
+    left: 43px;
+    top: 0;
+
+    width: 4px;
+    height: 90px;
+
+    background: #e92328;
+}
+
+
+.cross-dot {
+
+    position: absolute;
+
+    left: 38px;
+    top: 38px;
+
+    width: 14px;
+    height: 14px;
+
+    border-radius: 50%;
+
+    background: #e92328;
+
+    border: 2px solid white;
+}
+
+
+/* =========================
+   HIT表示
+========================= */
+
+.hit {
+
+    position: absolute;
+
+    z-index: 100;
+
+    color: #ffe034;
+
+    font-size: 35px;
+
+    font-weight: 900;
+
+    text-shadow:
+        3px 3px #8b231c,
+        -2px -2px white;
+
+    pointer-events: none;
+
+    animation:
+        hitAnimation .5s forwards;
+}
+
+
+@keyframes hitAnimation {
+
+    0% {
+        transform: scale(.5);
+        opacity: 0;
+    }
+
+    30% {
+        transform: scale(1.3);
+        opacity: 1;
+    }
+
+    100% {
+        transform:
+            translateY(-70px)
+            scale(1);
+        opacity: 0;
+    }
+}
+
+
+/* =========================
+   スタート画面
+========================= */
+
+#startScreen {
+
+    position: absolute;
+
+    z-index: 200;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    width: 520px;
+
+    padding: 45px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            #fff,
+            #eee
+        );
+
+    border: 12px solid #d18b35;
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 15px 50px rgba(0,0,0,.5);
+}
+
+
+#startScreen h1 {
+
+    margin: 0;
+
+    color: #17427d;
+
+    font-size: 42px;
+
+    text-shadow:
+        3px 3px #ffd83a;
+}
+
+
+#startScreen p {
+
+    font-size: 23px;
+}
+
+
+#startButton {
+
+    padding: 18px 65px;
+
+    border: none;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            #ffd93b,
+            #f3a900
+        );
+
+    color: #542600;
+
+    font-size: 30px;
+
+    font-weight: 900;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 7px 0 #9a6100;
+}
+
+#startButton:active {
+
+    transform: translateY(6px);
+
+    box-shadow: none;
+}

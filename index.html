@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Toy Shooting Game</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div id="game">
+
+    <!-- 上の情報バー -->
+    <header>
+
+        <div class="scoreBox">
+            ⭐ SCORE
+            <span id="score">0</span>
+        </div>
+
+        <div class="timeBox">
+            ⏱ TIME
+            <span id="time">30</span>
+        </div>
+
+        <button id="pauseButton">Ⅱ</button>
+
+    </header>
+
+
+    <!-- ステージ -->
+    <main id="stage">
+
+        <!-- 山 -->
+        <div class="mountain mountain1"></div>
+        <div class="mountain mountain2"></div>
+
+        <!-- 雲 -->
+        <div class="cloud cloud1"></div>
+        <div class="cloud cloud2"></div>
+
+        <!-- 背景の木 -->
+        <div class="trees">
+            🌲　🌲　🌲　🌲　🌲　🌲　🌲
+        </div>
+
+        <!-- 川 -->
+        <div class="river"></div>
+
+        <!-- 線路 -->
+        <div class="rail"></div>
+
+
+        <!-- 的を配置する場所 -->
+        <div id="targets"></div>
+
+
+        <!-- 照準 -->
+        <div id="crosshair">
+            <div class="cross-circle"></div>
+            <div class="cross-h"></div>
+            <div class="cross-v"></div>
+            <div class="cross-dot"></div>
+        </div>
+
+    </main>
+
+
+    <!-- 左側の看板 -->
+    <aside class="sign">
+
+        <div class="signTitle">
+            TOY
+            <br>
+            SHOOTING
+            <br>
+            GAME
+        </div>
+
+        <div class="soldier">
+            🧸🔫
+        </div>
+
+        <div class="instruction">
+            TARGETを<br>
+            ねらって<br>
+            撃て！
+        </div>
+
+        <div class="stars">
+            ★ ★ ★
+        </div>
+
+    </aside>
+
+
+    <!-- スタート画面 -->
+    <div id="startScreen">
+
+        <h1>🎪 TOY SHOOTING 🎪</h1>
+
+        <p>
+            的をねらって撃とう！
+        </p>
+
+        <button id="startButton">
+            START
+        </button>
+
+    </div>
+
+
+</div>
+
+<script src="game.js"></script>
+
+</body>
+</html>
